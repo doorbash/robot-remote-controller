@@ -5,7 +5,7 @@ io.on('connection', function(socket)
 	socket.on('event', function(data)
 	{
 		bin = parseInt(data).toString(2)
-		bin = "0".repeat(30-bin.length) + bin
+		bin = "0".repeat(22-bin.length) + bin
 		console.log(bin)
 	});
 	socket.on('disconnect', function() {

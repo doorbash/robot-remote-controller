@@ -33,6 +33,17 @@ with SocketIO('127.0.0.1', 3000, LoggingNamespace) as socketIO:
                 elif axis < 0:
                     data += 1 << i + 1
 
+            for i in range(numButtons + numAxes,numButtons + numAxes + numHats*4)[::4]:
+                x,y = j.get_hat((i-numButtons-numAxes)/4)
+                if x > 0:
+                    data += 1 << i
+                elif x < 0:
+                    data += 1 << i + 1
+                if y > 0:
+                    data += 1 << i + 2
+                elif y < 0:
+                    data += 1 << i + 3
+
             if data > 0:
                 socketIO.emit('event',str(data))
 
